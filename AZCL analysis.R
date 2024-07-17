@@ -25,18 +25,6 @@ clean_azcl_data_meta = clean_azcl_data %>%
   left_join(clean_azcl_meta[colnames(clean_azcl_meta) %in% c("AZCL_Substrate", "EC_number")], by = "AZCL_Substrate") %>%
   filter(EC_number %in% c("3.2.1.1", "3.2.1.4"))
 
-
-## Anovas for only those that actually have activity in Pre as no need for a test if all results are Pre
-res.aov1 = aov(Averages_technical_replicates ~ Timepoint, data = clean_azcl_data_meta[clean_azcl_data_meta$EC_number == "3.2.1.1",])
-summary(res.aov1)
-cohens_f(res.aov1)
-TukeyHSD(res.aov1)
-
-res.aov2 = aov(Averages_technical_replicates ~ Timepoint, data = clean_azcl_data_meta[clean_azcl_data_meta$EC_number == "3.2.1.4",])
-summary(res.aov2)
-cohens_f(res.aov2)
-TukeyHSD(res.aov2)
-
 #### Permanova of AZCL distance matrix ####
 #=========================================#
 
